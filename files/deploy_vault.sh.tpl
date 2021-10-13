@@ -12,10 +12,12 @@ sudo apt-get install unzip
 unzip -d /usr/bin /tmp/vault.zip
 
 #cp /tmp/vault /usr/bin/vault
-chmod 744 /usr/bin/vault
+chmod 755 /usr/bin/vault
 
 echo "set -o vi" >> /etc/profile
 echo "export VAULT_ADDR=${VAULT_ADDR}" >> /etc/profile
 echo "export VAULT_NAMESPACE=${VAULT_NAMESPACE}" >> /etc/profile
+
+vault status 
 
 echo "Script complete."
