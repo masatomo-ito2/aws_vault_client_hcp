@@ -32,5 +32,25 @@ variable "tfc_ws" {
 }
 
 variable "key_name" {
-	type = string
+  type = string
 }
+
+# HCP Vault
+variable "hvn_id" {
+  description = "The ID of the HCP HVN."
+  type        = string
+  default     = "hcp-vault-hvn"
+}
+
+variable "hvn_peering_id" {
+  type = string
+}
+
+variable "hvn_route_id" {
+  type = string
+}
+
+variable "vault_cluster_id" {
+  type = string
+}
+
