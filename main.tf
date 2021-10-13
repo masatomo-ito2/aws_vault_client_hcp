@@ -94,6 +94,6 @@ resource "aws_instance" "vault_client" {
   vpc_security_group_ids      = [aws_security_group.vault_client.id]
 
   tags = {
-    Name = "${var.prefix}-vault_client-instance"
+    Name = "${var.prefix}-vault-hcp-client-instance"
   }
 }
