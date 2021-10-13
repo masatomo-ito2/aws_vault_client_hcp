@@ -66,28 +66,6 @@ resource "aws_security_group" "vault_client" {
   }
 }
 
-resource "aws_internet_gateway" "vault_client" {
-  vpc_id = local.vpc_id
-
-  tags = {
-    Name = "${var.prefix}-internet-gateway"
-  }
-}
-
-resource "aws_route_table" "vault_client" {
-  vpc_id = local.vpc_id
-
-  route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.vault_client.id
-  }
-}
-
-resource "aws_route_table_association" "vault_client" {
-  subnet_id      = local.subnet_id
-  route_table_id = aws_route_table.vault_client.id
-}
-
 data "aws_ami" "ubuntu" {
   most_recent = true
 
@@ -103,16 +81,6 @@ data "aws_ami" "ubuntu" {
   }
 
   owners = ["099720109477"] # Canonical
-}
-
-resource "aws_eip" "vault_client" {
-  instance = aws_instance.vault_client.id
-  vpc      = true
-}
-
-resource "aws_eip_association" "vault_client" {
-  instance_id   = aws_instance.vault_client.id
-  allocation_id = aws_eip.vault_client.id
 }
 
 resource "aws_instance" "vault_client" {
