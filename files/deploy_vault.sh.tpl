@@ -9,9 +9,9 @@ curl -o /tmp/vault.zip https://releases.hashicorp.com/vault/${VAULT_VERSION}/vau
 
 sudo apt-get install unzip
 
-unzip /tmp/vault.zip
+unzip -d /usr/bin /tmp/vault.zip
 
-cp //tmp/vault /usr/bin/vault
+#cp /tmp/vault /usr/bin/vault
 chmod 744 /usr/bin/vault
 
 echo "set -o vi" >> /etc/profile
