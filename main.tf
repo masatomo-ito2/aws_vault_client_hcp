@@ -31,7 +31,7 @@ locals {
 }
 
 resource "aws_security_group" "vault_client" {
-  name = "${var.prefix}-security-group"
+  name = "${var.prefix}-hcp-security-group"
 
   vpc_id = local.vpc_id
 
@@ -65,7 +65,7 @@ resource "aws_security_group" "vault_client" {
   }
 
   tags = {
-    Name = "${var.prefix}-security-group"
+    Name = "${var.prefix}-hcp-security-group"
   }
 }
 
