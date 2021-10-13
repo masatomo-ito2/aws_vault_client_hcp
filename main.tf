@@ -92,7 +92,7 @@ resource "aws_instance" "vault_client" {
 }
 
 data "template_file" "vault" {
-  template = file("${path.module}/file/deploy_vault.tpl")
+  template = file("${path.module}/files/deploy_vault.tpl")
 
   vars = {
     VAULT_VERSION = var.vault_version
