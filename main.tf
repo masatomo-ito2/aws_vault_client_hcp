@@ -24,7 +24,7 @@ data "terraform_remote_state" "this" {
 
 locals {
   vpc_id    = data.terraform_remote_state.this.outputs.vpc_id_japan
-  subnet_id = data.terraform_remote_state.this.outputs.public_subnets_japan
+  subnet_id = data.terraform_remote_state.this.outputs.public_subnets_japan[0]
 }
 
 resource "aws_security_group" "vault_client" {
