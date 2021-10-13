@@ -84,8 +84,20 @@ resource "aws_instance" "vault_client" {
   associate_public_ip_address = true
   subnet_id                   = local.subnet_id
   vpc_security_group_ids      = [aws_security_group.vault_client.id]
+  user_data                   = data.template_file.vault.rendered
 
   tags = {
     Name = "${var.prefix}-vault-hcp-client-instance"
+  }
+}
+
+data "template_file" "vault" {
+  template = file("${path.module}/file/deploy_vault.tpl")
+
+  vars = {
+    VAULT_VERSION = var.vault_version
+    VAULT_ADDR    = local.v.vault_public_endpoint_url
+    # VAULT_ADDR = local.v.vault_private_endpoint_url
+    VAULT_NAMESPACE = "admin"
   }
 }
