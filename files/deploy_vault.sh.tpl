@@ -5,7 +5,7 @@
 set -x 
 exec > >(tee /tmp/tf-user-data.log|logger -t hashicat ) 2>&1
 
-wget -o /tmp/vault.zip https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip
+curl -o /tmp/vault.zip https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip
 
 sudo apt-get install unzip
 
