@@ -22,14 +22,6 @@ data "terraform_remote_state" "this" {
   }
 }
 
-locals {
-  vpc_id         = data.terraform_remote_state.this.outputs.vpc_id_japan
-  vpc_arn        = data.terraform_remote_state.this.outputs.vpc_arn_japan
-  subnet_id      = data.terraform_remote_state.this.outputs.public_subnets_japan[0]
-  vpc_owner_id   = data.terraform_remote_state.this.outputs.vpc_owner_id_japan
-  vpc_cidr_block = data.terraform_remote_state.this.outputs.vpc_cidr_block_japan
-}
-
 resource "aws_security_group" "vault_client" {
   name = "${var.prefix}-hcp-security-group"
 
