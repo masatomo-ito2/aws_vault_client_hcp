@@ -12,7 +12,7 @@ data "hcp_vault_cluster" "vault_cluster" {
 
 # Peering
 data "aws_arn" "peer" {
-  arn = local.vpc_id
+  arn = local.vpc_arn
 }
 
 resource "hcp_aws_network_peering" "peer" {
