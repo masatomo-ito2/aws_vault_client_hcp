@@ -36,13 +36,14 @@ resource "aws_vpc_peering_connection_accepter" "peer" {
 }
 
 # route table
+/*
 resource "aws_route" "hvn_peering" {
   route_table_id            = local.vpc_main_route_table_id
   destination_cidr_block    = data.hcp_hvn.hcp_vault_hvn.cidr_block
   vpc_peering_connection_id = hcp_aws_network_peering.peer.provider_peering_id
 }
+*/
 
-/*
 resource "aws_route_table" "hvn_peering" {
   vpc_id = local.vpc_id
 
@@ -55,4 +56,3 @@ resource "aws_route_table" "hvn_peering" {
     Name = "${var.prefix}-HVN-peering"
   }
 }
-*/

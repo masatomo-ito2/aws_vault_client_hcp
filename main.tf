@@ -99,5 +99,6 @@ data "template_file" "vault" {
     VAULT_ADDR    = local.v.vault_public_endpoint_url
     # VAULT_ADDR = local.v.vault_private_endpoint_url
     VAULT_NAMESPACE = "admin"
+		VAULT_SSH_HELPER_VERSION = var.vault_ssh_helper_version
   }
 }
