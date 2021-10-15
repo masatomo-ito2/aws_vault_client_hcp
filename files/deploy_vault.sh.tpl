@@ -19,6 +19,7 @@ echo "export VAULT_NAMESPACE=${VAULT_NAMESPACE}" >> /etc/profile
 # SSH OTP
 
 curl -o /tmp/vault-ssh-helper.zip https://releases.hashicorp.com/vault-ssh-helper/${VAULT_SSH_HELPER_VERSION}/vault-ssh-helper_${VAULT_SSH_HELPER_VERSION}_linux_amd64.zip
+https://releases.hashicorp.com/vault-ssh-helper/0.2.1/vault-ssh-helper_0.2.1_linux_amd64.zip
 
 unzip -q -d /usr/local/bin /tmp/vault-ssh-helper.zip
 chmod 0755 /usr/local/bin/vault-ssh-helper
@@ -29,7 +30,7 @@ mkdir /etc/vault-ssh-helper.d
 tee /etc/vault-ssh-helper.d/config.hcl <<EOF
 vault_addr = "${VAULT_ADDR}"
 tls_skip_verify = false
-ssh_mount_point = "ssh"
+ssh_mount_point = "ssh_otp"
 namespace = "admin"
 allowed_roles = "*"
 EOF
@@ -102,6 +103,9 @@ sed -e 's/^\(PasswordAuthentication\) .*$/\1 no/g' /etc/ssh/sshd_config
 
 systemctl restart sshd
 
-nohup vault-ssh-helper -verify-only -dev -config /etc/vault-ssh-helper.d/config.hcl &
+vault-ssh-helper -verify-only -dev -config /etc/vault-ssh-helper.d/config.hcl
+
+# create user
+useradd -m otp
 
 echo "Script complete."
