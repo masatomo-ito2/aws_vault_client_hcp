@@ -24,8 +24,8 @@ variable "vault_version" {
 }
 
 variable "vault_ssh_helper_version" {
-	type = string
-	default = "1.2.1"
+  type    = string
+  default = "1.2.1"
 }
 
 variable "tfc_org" {
