@@ -16,13 +16,12 @@ echo "set -o vi" >> /etc/profile
 echo "export VAULT_ADDR=${VAULT_ADDR}" >> /etc/profile
 echo "export VAULT_NAMESPACE=${VAULT_NAMESPACE}" >> /etc/profile
 
-vault status 
-
 # SSH OTP
 
 curl -o /tmp/vault-ssh-helper.zip https://releases.hashicorp.com/vault-ssh-helper/${VAULT_SSH_HELPER_VERSION}/vault-ssh-helper_${VAULT_SSH_HELPER_VERSION}_linux_amd64.zip
+
 unzip -q -d /usr/local/bin /tmp/vault-ssh-helper.zip
-chmod 0755 /usr/local/bin/vault-ssh-helper.zip
+chmod 0755 /usr/local/bin/vault-ssh-helper
 chown root:root /usr/local/bin/vault-ssh-helper
 
 mkdir /etc/vault-ssh-helper.d
